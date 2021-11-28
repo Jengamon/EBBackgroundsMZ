@@ -2227,7 +2227,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["json5", "npm:2.2.0"],
             ["lodash", "npm:4.17.21"],
             ["pixi.js", "npm:6.2.0"],
-            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=4b8602633ba32bd65e7b348ac134677c4049f9d6"],
+            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=abb67b2ae4063ce7e79cd31853316e6b295dddd3"],
             ["rollup", "npm:2.60.1"],
             ["rollup-plugin-glslify", "npm:1.2.1"],
             ["tslib", "npm:2.3.1"],
@@ -4095,10 +4095,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["rmmz", [
-        ["https://github.com/Jengamon/rmmz-d-ts.git#commit=4b8602633ba32bd65e7b348ac134677c4049f9d6", {
-          "packageLocation": "./.yarn/cache/rmmz-https-3f83e02c27-3da10121b3.zip/node_modules/rmmz/",
+        ["https://github.com/Jengamon/rmmz-d-ts.git#commit=abb67b2ae4063ce7e79cd31853316e6b295dddd3", {
+          "packageLocation": "./.yarn/cache/rmmz-https-3c51e49f15-0b62bdf28f.zip/node_modules/rmmz/",
           "packageDependencies": [
-            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=4b8602633ba32bd65e7b348ac134677c4049f9d6"],
+            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=abb67b2ae4063ce7e79cd31853316e6b295dddd3"],
             ["@types/pako", "npm:1.0.2"],
             ["pixi.js", "npm:6.2.0"],
             ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]
@@ -4516,7 +4516,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@rollup/plugin-typescript", "virtual:69dce57ce0c65c076f732dbeb8b951d36b3fab26a813373590d362db4b68e5f1d598bdcbfd4e75039d6d26287788a992bc3048e15dbda73135a12efaadf1ea0d#npm:8.3.0"],
             ["@types/pako", "npm:1.0.2"],
             ["pixi.js", "npm:6.2.0"],
-            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=4b8602633ba32bd65e7b348ac134677c4049f9d6"],
+            ["rmmz", "https://github.com/Jengamon/rmmz-d-ts.git#commit=abb67b2ae4063ce7e79cd31853316e6b295dddd3"],
             ["rollup", "npm:2.60.1"],
             ["tslib", "npm:2.3.1"],
             ["typescript", "patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"]

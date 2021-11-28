@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 import * as json5 from "json5";
-import { $gameSystem, PluginManager, Scene_Battle, Sprite, Spriteset_Battle, Sprite_Battleback } from "rmmz";
+import { $gameSystem, PluginManager, Bitmap, Scene_Battle, Sprite, Spriteset_Battle, Sprite_Battleback, Graphics } from "rmmz";
 import { Configuration, EBBFilter } from "./layer_config";
 import { getFileFromServer } from "./utils";
 import * as PIXI from "pixi.js";
@@ -25,51 +25,67 @@ export function greet(name: string) {
     return `Hello, ${name}`;
 }
 
-const configuration1 = new Configuration({
+export const configuration1 = new Configuration({
     type: "horizontal",
-    amplitude: 10,
+    amplitude: 0.1,
     frequency: 5,
 });
 
-const configuration2 = new Configuration({
+export const configuration2 = new Configuration({
     type: "horizontal_interlaced",
-    amplitude: 30,
+    amplitude: 10,
     frequency: 45,
 });
 
-interface Spriteset_BattleExt {
+class Spriteset_BattleEBB extends Spriteset_Battle {
     _ebb1Sprite: Sprite;
     _ebb2Sprite: Sprite;
-}
 
-const SB_createBackground = Spriteset_Battle.prototype.createBackground;
-Spriteset_Battle.prototype.createBackground = function (this: Spriteset_Battle) {
-    SB_createBackground.apply(this, []);
+    constructor() {
+        console.log("dumb");
+        
+        super();
 
-    const _ebb1Sprite = new Sprite();
-    const _ebb2Sprite = new Sprite();
+        console.log(Graphics.width, Graphics.height);
+        const b1 = new Bitmap(Graphics.width, Graphics.height);
+        b1.drawCircle(Graphics.width / 2, Graphics.height / 2, Graphics.height / 2, "#ff00ff");
+        this._ebb1Sprite = new Sprite(b1);
+        this._ebb2Sprite = new Sprite();
+        this._ebb1Sprite.filters = [new EBBFilter(configuration1)];
+        this._ebb2Sprite.filters = [new EBBFilter(configuration1)];
 
-    _ebb1Sprite.filters = [new EBBFilter(configuration1)];
-    _ebb2Sprite.filters = [new EBBFilter(configuration2)];
+        this.attachEBBSprites();
 
-    this._backgroundSprite.addChild(_ebb1Sprite);
-    this._backgroundSprite.addChild(_ebb2Sprite);
-
-    {
-        const nthis = this as Spriteset_Battle & Spriteset_BattleExt;
-        nthis._ebb1Sprite = _ebb1Sprite;
-        nthis._ebb2Sprite = _ebb2Sprite;
+        console.log(`${window.$gameActors.actor(1)?.name()} knows nothing...`);
     }
 
-    console.log("ghas");
-};
+    override initialize() {
+        super.initialize();
+    }
 
-const SB_createBattleback = Spriteset_Battle.prototype.createBattleback;
-Spriteset_Battle.prototype.createBattleback = function (this: Spriteset_Battle) {
-    SB_createBattleback.apply(this, []);
+    attachEBBSprites() {
+        this._baseSprite.addChild(this._ebb1Sprite);
+        this._baseSprite.addChild(this._ebb2Sprite);
 
-    this._back1Sprite.visible = false;
-    this._back2Sprite.visible = false;
+        console.log("ghasi");
+    }
 
-    console.log("goomba");
+    override createBattleback() {
+        super.createBattleback();
+
+        this._back1Sprite.visible = false;
+        this._back2Sprite.visible = false;
+
+        console.log("joomla");
+    }
 }
+window.Spriteset_Battle = Spriteset_BattleEBB;
+
+// Alternate way of overriding methods. Not fun tho, as you can't add members this way.
+// const SB_createBattleback = Spriteset_Battle.prototype.createBattleback;
+// Spriteset_Battle.prototype.createBattleback = function (this: Spriteset_Battle) {
+//     SB_createBattleback.apply(this, []);
+//     this._back1Sprite.visible = false;
+//     this._back2Sprite.visible = false;
+//     console.log("goomba");
+// }
